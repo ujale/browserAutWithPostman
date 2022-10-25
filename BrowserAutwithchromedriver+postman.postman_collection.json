@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "42a42f73-3538-4828-b72c-75dbbeb8af45",
+		"name": "Browser Aut with chromedriver + postman",
+		"description": "This collection contains requests used to test web automation with postman and chrome driver.\n\nReference: [https://www.pawangaria.com/post/automation/browser-automation-using-chromedriver-and-postman/](https://www.pawangaria.com/post/automation/browser-automation-using-chromedriver-and-postman/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7106956"
+	},
+	"item": [
+		{
+			"name": "Kippa Website",
+			"item": [
+				{
+					"name": "Call Chrome Driver (launch browser)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"sessionId\", body.sessionId);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Confirm browser launched is Chrome\", function () {",
+									"    pm.expect(body.value.browserName).to.eql(\"chrome\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"desiredCapabilities\": {\n        \"caps\": {\n            \"nativeEvents\": false,\n            \"browserName\": \"chrome\",\n            \"version\": \"\",\n            \"platform\": \"ANY\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enter url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\":\"https://kippa.africa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session/{{sessionId}}/url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session",
+								"{{sessionId}}",
+								"url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an element(New icon)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"",
+									"//pm.environment.set(\"elementId\", body.value.ELEMENT);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"using\":\"index\",\n    \"value\":\"#menuToggle\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session/{{sessionId}}/element",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session",
+								"{{sessionId}}",
+								"element"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Browser(quit driver session)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session/{{sessionId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session",
+								"{{sessionId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Google",
+			"item": [
+				{
+					"name": "Call Chrome Driver (launch browser)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"GsessionId\", body.sessionId);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Confirm browser launched is Chrome\", function () {",
+									"    pm.expect(body.value.browserName).to.eql(\"chrome\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"desiredCapabilities\": {\n        \"caps\": {\n            \"nativeEvents\": false,\n            \"browserName\": \"chrome\",\n            \"version\": \"\",\n            \"platform\": \"ANY\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enter url",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"url\":\"https://www.google.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session/{{GsessionId}}/url",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session",
+								"{{GsessionId}}",
+								"url"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an element(Search box)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set(\"GelementId\", body.value.ELEMENT);",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"using\":\"name\",\n    \"value\":\"q\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session/{{GsessionId}}/element",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session",
+								"{{GsessionId}}",
+								"element"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Make a Search (sunflower)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\":[\n        \"sunflower\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session/{{GsessionId}}/element/{{GelementId}}/value",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session",
+								"{{GsessionId}}",
+								"element",
+								"{{GelementId}}",
+								"value"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Browser(quit driver session)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9515/session/{{GsessionId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9515",
+							"path": [
+								"session",
+								"{{GsessionId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
